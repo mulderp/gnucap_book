@@ -1,4 +1,7 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Gnucap overview](README.md)
+* [Installing Gnucap](installing-gnucap.md)
+* [Circuit basics](untitled.md)
+* [Interactions with Python](interactions-with-python.md)
 
