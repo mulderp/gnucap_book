@@ -1,8 +1,8 @@
 # Gnucap overview
 
-Gnucap is an open-source circuit simulator, or circuit analysis package (in short: CAP).
+Gnucap is an open-source circuit simulator, or circuit analysis package \(in short: CAP\).
 
-Very good overviews on Gnucap can be found in FOSDEM talks:
+Nice overviews on Gnucap can be found in FOSDEM talks:
 
 * [Gnucap, and analog and mixed signal simulation](https://archive.fosdem.org/2018/schedule/event/cad_gnucap/)
 * [gnucap - recent work and directions](https://www.youtube.com/watch?v=zyeMORbswKk)
