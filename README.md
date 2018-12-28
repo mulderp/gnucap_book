@@ -9,3 +9,5 @@ Nice overviews on Gnucap can be found in FOSDEM talks:
 
 The main Gnucap project page can be found [at the GNU servers](https://www.gnu.org/software/gnucap/gnucap.html). Note,this page is a bit older and does tno reflect all the recent development that can be found on in the Gnucap source code.
 
+A useful resource for help is the Gnucap manual: [https://www.gnu.org/software/gnucap/gnucap-man.pdf](https://www.gnu.org/software/gnucap/gnucap-man.pdf)
+
