@@ -4,6 +4,12 @@ There are multiple ways to get Gnucap running. To use the latest features, it is
 
 ## Prerequisites
 
+To build Gnucap from source you need to install a number of buildtools: 
+
+* Gcc
+* auto tools
+* ...
+
 ## Building Gnucap on Linux
 
 You can download gnucap from the [Gnu savannah repo](git://git.savannah.gnu.org/gnucap.git):
