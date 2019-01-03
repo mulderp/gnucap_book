@@ -18,6 +18,13 @@ You can download gnucap from the [Gnu savannah repo](git://git.savannah.gnu.org/
 git clone git://git.savannah.gnu.org/gnucap.git
 ```
 
+or
+
+
+```text
+git clone https://git.savannah.gnu.org/r/gnucap
+```
+
 This will give you the basic gnucap directory structure:
 
 ```text
@@ -28,6 +35,11 @@ This will give you the basic gnucap directory structure:
 ├── modelgen
 └── tests
 ```
+
+Next, you need to move a recent tag or branch of the project. You can do this with:
+
+    git checkout -b ....
+    
 
 The project includes a gnucap shared library gnucap.so, some executables and a number of plugins.
 
