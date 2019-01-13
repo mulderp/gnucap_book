@@ -1,5 +1,8 @@
 # Circuit basics
 
+Several tutorials to learn gnucap are available on the internet. A good overview is provided from the [gnucap-examples](http://gnucap.org/dokuwiki/doku.php/gnucap:manual:examples:hello_world) wiki page.
+
+
 ## Interactive mode in Gnucap
 
 Before you can run a simulation you must enter a netlist into the simulator. There a several ways to load a netlist, depending how big the netlist for simulation is. For small calculations you can run gnucap in "interactive mode". For this, start gnucap from the command line with:
