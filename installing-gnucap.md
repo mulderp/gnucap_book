@@ -7,7 +7,7 @@ There are multiple ways to get Gnucap running. To use the latest features, it is
 To build Gnucap from source you need to install a number of buildtools: 
 
 * g++
-* the [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library or debian package `libreadline-dev? 
+* the [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library or debian package `libreadline-dev`
 * auto tools
 * ...
 
