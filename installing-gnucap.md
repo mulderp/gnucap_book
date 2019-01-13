@@ -66,7 +66,7 @@ To build gnucap on MacOS, a good reference is the gnucap build recipe [https://g
 
 After a successfull build and installation, you should be able to run gnucap like this:
 
-``
+```
 ~$ gnucap
 Gnucap : The Gnu Circuit Analysis Package
 Never trust any version less than 1.0
@@ -79,4 +79,4 @@ See the file "COPYING" for details.
 main version: master 2017.10.03
 core-lib version: master 2017.10.03
 default plugins: master 2017.10.03
-``
+```
