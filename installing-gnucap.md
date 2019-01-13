@@ -6,7 +6,8 @@ There are multiple ways to get Gnucap running. To use the latest features, it is
 
 To build Gnucap from source you need to install a number of buildtools: 
 
-* Gcc
+* g++
+* libreadline
 * auto tools
 * ...
 
