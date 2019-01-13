@@ -34,10 +34,15 @@ You should see the netlist:
 
 Then calculate the DC operating points:
 
-    * run DC
-    .print op v(1) v(2)
-    .op
-    
+```
+gnucap> probe op V(nodes)
+gnucap> op
+#           V(1)       V(2)      
+ 27.        1.         0.5  
+```
+
+As you can see, the voltage on node 2 is half of voltage on node 1. This calculation took 27 internal steps (Todo: check the meaning of # 27.)
+
 And sweep the input voltage for example:
 
     * run DC sweep
