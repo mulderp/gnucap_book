@@ -7,7 +7,7 @@ There are multiple ways to get Gnucap running. To use the latest features, it is
 To build Gnucap from source you need to install a number of buildtools: 
 
 * g++
-* libreadline
+* libreadline-dev
 * auto tools
 * ...
 
@@ -62,3 +62,21 @@ It might be necessary to reload the shared libraries with:
 
 To build gnucap on MacOS, a good reference is the gnucap build recipe [https://github.com/guitorri/homebrew-tap/blob/master/gnucap.rb](https://github.com/guitorri/homebrew-tap/blob/master/gnucap.rb)
 
+## Run gnucap
+
+After a successfull build and installation, you should be able to run gnucap like this:
+
+``
+~$ gnucap
+Gnucap : The Gnu Circuit Analysis Package
+Never trust any version less than 1.0
+Copyright 1982-2013, Albert Davis
+Gnucap comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome
+to redistribute it under the terms of 
+the GNU General Public License, version 3 or later.
+See the file "COPYING" for details.
+main version: master 2017.10.03
+core-lib version: master 2017.10.03
+default plugins: master 2017.10.03
+``
