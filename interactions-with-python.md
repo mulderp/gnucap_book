@@ -1,4 +1,4 @@
-# Simulations with Python
+# Simulate from Python
 
 It is possible to run GnuCAP simulations from Python.
 
