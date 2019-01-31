@@ -23,8 +23,44 @@ The Python extension is based on SWIG and the autotools build system
 
     
     
-To build and use the Gnucap module, you should install a number of other Python package:
+To build and use the Gnucap module, you should install a at least the numpy package with development headers. In Linux you can simply put a link to these headers in the /usr/include folder as follows:
 
-* numpy
-* matplotlib
+
+Also you might want to install matplotlib package to plot simulation results.
+
+
+## Simple pulse simulation
+
+```
+$ cat > pulse.ckt
+spice
+v1 (1 0) pulse (0 1)
+
+.print tran v(1)
+.tran 0 1 .1
+.tran trace all
+
+.end
+```
+
+Then run the Python based simulation script:
+
+
+```
+$ cat > sim_pulse.py
+import gnucap
+from gnucap import command as cmd
+
+cmd("get stuff.sp")
+print("listing circuit")
+cmd("list")
+cmd("store tran v(nodes)")
+cmd("transient 1 trace=none > /dev/null") # spice aliases don't work
+
+# bug: does not throw if "v(1)" doesnt exist, (but returns None).
+w = gnucap.CKT_BASE_find_wave("v(1)")
+
+for i in w:
+        print (i)
+```
 
