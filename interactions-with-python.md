@@ -12,7 +12,7 @@ First you need to clone the repo:
 
     git clone https://gitlab.com/gnucap/gnucap-python
 
-To build the Gnucap Python extension you might to build a new version of gnucap. You can see a list of recent versions with:
+To build the Gnucap Python extension you might to build a recent version of gnucap. You can see a list of recent versions with:
 
     git tag -l
     git checkout 20171003
@@ -25,7 +25,8 @@ The Python extension is based on SWIG and the autotools build system
     
 To build and use the Gnucap module, you should install a at least the numpy package with development headers. In Linux you can simply put a link to these headers in the /usr/include folder as follows:
 
-
+    # cd /usr/local/include && ln -sf /usr/local/lib/python3.5/dist-packages/numpy/core/include/numpy .
+    
 Also you might want to install matplotlib package to plot simulation results.
 
 
@@ -63,4 +64,6 @@ w = gnucap.CKT_BASE_find_wave("v(1)")
 for i in w:
         print (i)
 ```
+
+
 
