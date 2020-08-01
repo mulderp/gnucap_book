@@ -62,6 +62,39 @@ It might be necessary to reload the shared libraries with:
 
 To build gnucap on MacOS, a good reference is the gnucap build recipe [https://github.com/guitorri/homebrew-tap/blob/master/gnucap.rb](https://github.com/guitorri/homebrew-tap/blob/master/gnucap.rb)
 
+## Note on MinGW build
+
+It is possible to build GnuCap with CMake for MinGW for example.
+
+```cmake
+mkdir build
+cd build
+cmake -G Ninja ..
+ninja all
+```
+
+However, when you start gnucap you might see an error such as:
+
+```
+λ gnucap
+plugpath: PLUGPATH=/usr/local/lib/gnucap
+Gnucap : The Gnu Circuit Analysis Package
+...
+main version: cmake-2 2017.10.18
+core-lib version: cmake-2 2017.10.18
+/usr/local/lib/gnucap
+gnucap-default-plugins.dll
+load gnucap-default-plugins.dll
+     ^ ? plugin debug (gnucap-default-plugins.dll ) not found in /usr/local/lib/gnucap
+```
+
+You need to provide a path the gnucap plugin dll.
+Also, you need to set the environment variable:
+
+```env
+set GNUCAP_PLUGPATH=C:\Users\pm\git\gnucap\build\main
+```
+
 ## Run gnucap
 
 After a successfull build and installation, you should be able to run gnucap like this:
