@@ -19,6 +19,7 @@ You can directly enter the nodes of the netlist. For example a simple voltage di
     vi 1 0 1.0
     r1 1 2 10K
     r2 2 0 10K
+    *an empty file is needed after this one
  
 To check that the netlist is loaded run:
 
@@ -46,14 +47,31 @@ As you can see, the voltage on node 2 is half of voltage on node 1. This calcula
 And sweep the input voltage for example:
 
     * run DC sweep
-    .width out=80
+    width out=80
     
 You can plot the results with:
 
+    plot dc v(1)(0,1) v(2)(0,1)
+    dc vi 0.0 1.0 .1
+    
+If you would do the process by reading the content of a file where everything is written inside, you would append a dot before each command(except for build) and pass the name of the file with the -b option
+    
+    #gnucap -b test.ckt
+    
+the content of the file would be:
+```    
+    * voltage divider
+    vi 1 0 1.0
+    r1 1 2 10K
+    r2 2 0 10K
+    .probe op V(nodes)
+    .op
+    .width out=80
     .plot dc v(1)(0,1) v(2)(0,1)
     .dc vi 0.0 1.0 .1
     .end
-
+```    
+Note that a there's a end command. It simple tells the program that it have done his job.
 
 ## Simulate transistor
 
