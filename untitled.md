@@ -19,7 +19,7 @@ You can directly enter the nodes of the netlist. For example a simple voltage di
     vi 1 0 1.0
     r1 1 2 10K
     r2 2 0 10K
-    *an empty file is needed after this one
+    *an empty line is needed after this one
  
 To check that the netlist is loaded run:
 
