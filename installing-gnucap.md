@@ -39,10 +39,15 @@ This will give you the basic gnucap directory structure:
 
 Next, you need to move a recent tag or branch of the project. You can do this with:
 
-    git checkout -b ....
-    
+    git checkout -b <tag_or_branch>
 
-The project includes a gnucap shared library gnucap.so, some executables and a number of plugins.
+You can see a list of tags with:
+  
+   git tag -l
+
+For example, you can build the version 20171003 tag or cmake-4 branch.
+    
+The build process of gnucap will give some executables and some shared libraries such as gnucap.so (or .dll on Windows).
 
 To build of these, you can run the default build commands:
 
@@ -57,6 +62,7 @@ It might be necessary to reload the shared libraries with:
  ldconfig
  ./configure
 ```
+
 
 ## Other operating systems
 
