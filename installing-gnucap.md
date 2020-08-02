@@ -66,7 +66,7 @@ To build gnucap on MacOS, a good reference is the gnucap build recipe [https://g
 
 It is possible to build GnuCap with CMake for MinGW for example.
 
-```cmake
+```
 mkdir build
 cd build
 cmake -G Ninja ..
@@ -76,7 +76,7 @@ ninja all
 However, when you start gnucap you might see an error such as:
 
 ```
-λ gnucap
+gnucap
 plugpath: PLUGPATH=/usr/local/lib/gnucap
 Gnucap : The Gnu Circuit Analysis Package
 ...
@@ -113,3 +113,5 @@ main version: master 2017.10.03
 core-lib version: master 2017.10.03
 default plugins: master 2017.10.03
 ```
+
+

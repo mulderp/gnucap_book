@@ -2,6 +2,6 @@
 
 * [Gnucap overview](README.md)
 * [Installing Gnucap](installing-gnucap.md)
-* [Circuit basics](untitled.md)
+* [Circuit basics](circuit-basics.md)
 * [Simulations with Python](interactions-with-python.md)
 
