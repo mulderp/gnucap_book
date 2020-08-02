@@ -79,6 +79,46 @@ cmake -G Ninja ..
 ninja all
 ```
 
+One example configuration run is shown below
+
+```
+-- The CXX compiler identification is GNU 9.1.0
+-- Check for working C compiler: C:/msys64/mingw64/bin/cc.exe
+-- Check for working C compiler: C:/msys64/mingw64/bin/cc.exe -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: C:/msys64/mingw64/bin/c++.exe
+-- Check for working CXX compiler: C:/msys64/mingw64/bin/c++.exe -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: C:/Program Files/Git/bin/git.exe (found version "2.21.0.windows.1")
+CMake Warning (dev) at CMakeLists.txt:33 (if):
+  Policy CMP0064 is not set: Support new TEST if() operator.  Run "cmake
+  --help-policy CMP0064" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  TEST will be interpreted as an operator when the policy is set to NEW.
+  Since the policy is not set the OLD behavior will be used.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Looking for readline in readline
+-- Looking for readline in readline - found
+-- Looking for tgetent in termcap
+-- Looking for tgetent in termcap - found
+-- Looking for dlopen
+-- Looking for dlopen - not found
+...
+```
+
+Now the build starts and you will get a library: libgnucap.dll and two main files:
+
+* modelgen
+* gnucap executables
+
 However, when you start gnucap you might see an error such as:
 
 ```
@@ -100,6 +140,8 @@ Also, you need to set the environment variable:
 ```env
 set GNUCAP_PLUGPATH=C:\Users\pm\git\gnucap\build\main
 ```
+
+Sometimes you also must have the dll and executable in the same directories.
 
 ## Run gnucap
 
