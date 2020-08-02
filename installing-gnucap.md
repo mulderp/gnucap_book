@@ -1,6 +1,6 @@
 # Installing Gnucap
 
-There are multiple ways to get Gnucap running. To use the latest features, it is best to install Gnucap from source. Building Gnucap is best on a Linux operating system such as Debian or Ubuntu. To build Gnucap on other operataing systems (for example MacOS or Windows) see the last section of this chapter.
+There are multiple ways to get Gnucap running. To use the latest features, it is best to install Gnucap from source. Building Gnucap is best on a Linux operating system such as Debian or Ubuntu. To build Gnucap on other operating systems (for example MacOS or Windows) see the last section of this chapter.
 
 ## Prerequisites
 
