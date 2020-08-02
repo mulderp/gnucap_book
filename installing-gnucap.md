@@ -68,9 +68,9 @@ It might be necessary to reload the shared libraries with:
 
 To build gnucap on MacOS, a good reference is the gnucap build recipe [https://github.com/guitorri/homebrew-tap/blob/master/gnucap.rb](https://github.com/guitorri/homebrew-tap/blob/master/gnucap.rb)
 
-## Note on MinGW build
+## Building with CMake
 
-It is possible to build GnuCap with CMake for MinGW for example.
+It is possible to build GnuCap with CMake. This approach can also be used on Windows with Cygwin and MinGW for example:
 
 ```
 mkdir build
