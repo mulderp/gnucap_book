@@ -43,7 +43,7 @@ Next, you need to move a recent tag or branch of the project. You can do this wi
 
 You can see a list of tags with:
   
-   git tag -l
+    git tag -l
 
 For example, you can build the version 20171003 tag or cmake-4 branch.
     
