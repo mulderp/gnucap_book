@@ -1,7 +1,7 @@
 
 # Interactive Gnucap
 
-After a successfull build and installation, you should be able to run gnucap like this:
+You can start Gnucap in interactive or batch mode. The default mode is interactive.
 
 ```
 ~$ gnucap
@@ -17,6 +17,16 @@ main version: master 2017.10.03
 core-lib version: master 2017.10.03
 default plugins: master 2017.10.03
 ```
+
+To start Gnucap in batch mode add a "-b" flag:
+
+```
+gnucap -b <mysim.ckt>
+```
+
+Note that there are different syntax forms for netlist, e.g. Spice, Spectre, ... Also, Verilog simulations can be run with Gnucap.
+
+
 
 There is no built-in help. A number of Gnucap commands can be seen in "c__cmd.cc" :
 
