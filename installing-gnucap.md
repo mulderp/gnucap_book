@@ -13,7 +13,7 @@ To build Gnucap from source you need to install a number of buildtools:
 
 ## Building Gnucap on Linux
 
-You can download gnucap from the [Gnu savannah repo](git://git.savannah.gnu.org/gnucap.git):
+You can download the source of Gnucap from the [Gnu savannah repo](git://git.savannah.gnu.org/gnucap.git):
 
 ```text
 git clone git://git.savannah.gnu.org/gnucap.git
@@ -26,18 +26,21 @@ or
 git clone https://git.savannah.gnu.org/r/gnucap
 ```
 
-This will give you the basic gnucap directory structure:
+This will give you the basic Gnucap directory structure:
 
 ```text
-├── apps
-├── include
-├── lib
-├── main
-├── modelgen
-└── tests
+        ./apps
+        ./include
+        ./lib
+        ./main
+        ./modelgen
+        ./tests
 ```
 
-Next, you need to move a recent tag or branch of the project. You can do this with:
+As you will learn later, the architecture of Gnucap is based heavily on plugins. The apps and libs folder include a set of plugins. 
+The main user interface is in the main folder. Modelgen is a utility to translate electrical components into models for simulation with Gnucap.
+
+To build Gnucap, you should move to a recent tag or branch of the project. You can do this with:
 
     git checkout -b <tag_or_branch>
 
@@ -45,7 +48,11 @@ You can see a list of tags with:
   
     git tag -l
 
-For example, you can build the version 20171003 tag or cmake-4 branch.
+Or you can see the branches with:
+
+    git branch -a
+
+For example, you can build the version "20171003" tag or cmake-4 branch.
     
 The build process of gnucap will give some executables and some shared libraries such as gnucap.so (or .dll on Windows).
 
