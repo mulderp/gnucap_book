@@ -24,11 +24,13 @@ To start Gnucap in batch mode add a "-b" flag:
 gnucap -b <mysim.ckt>
 ```
 
+There are different extensions such as .ckt or .gc for Gnucap simulations. Gnucap uses .gc for "gnucap" files, to distinguish which ones need -b. A number of examples can be found in the test folder of gnucap gnucap/tests/*.{gc,ckt}. -b switches on a "spice" mode, so in principle you could run the same .ckt files in ngspice and gnucap.
+
 Note that there are different syntax forms for netlist, e.g. Spice, Spectre, ... Also, Verilog simulations can be run with Gnucap.
 
 
 
-There is no built-in help. A number of Gnucap commands can be seen in "c__cmd.cc" :
+There is no built-in help. The best place to get information on Gnucap commands is the [documentation](https://www.gnu.org/software/gnucap/gnucap-man.pdf). Also, a number of Gnucap commands can be seen in "c__cmd.cc" :
 
      build
      delete
