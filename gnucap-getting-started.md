@@ -1,5 +1,5 @@
 
-# Interactive Gnucap
+# Simulator modes
 
 You can start Gnucap in interactive or batch mode. The default mode is interactive.
 
