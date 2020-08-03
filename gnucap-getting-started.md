@@ -55,3 +55,24 @@ Commands can be abbreviated with their first letter, e.g. "b" for build.
 The first command you want to learn are "build" and "list" to capture nodes of an electrical circuit. Then you can run analysis such as "fourier" for getting frequency data.
 
 Important commands for simulations are "dc" and "probe" commands.
+
+## Verilog mode
+
+Gnucap supports Verilog syntax. An overview on the Verilog can be found [in the wiki](http://gnucap.org/dokuwiki/doku.php/gnucap:manual:languages:verilog)
+
+To switch to the verilog mode, type "verilog" in the first line or in the REPL.
+
+```
+param w=2
+
+module m(1,2);
+   resistor #(.r(w*5)) r(1,2);
+endmodule
+
+m #(.w(w)) m1(0, 1);
+
+// sweep dc voltage
+vin  1  0  dc 3
+
+.dc vin 0 5 0.2
+```
