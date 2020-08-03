@@ -9,7 +9,7 @@ To build Gnucap from source you need to install a number of buildtools:
 * g++
 * the [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library or debian package `libreadline-dev`
 * auto tools
-* termcap libraryg
+* termcap library
 
 ## Building Gnucap on Linux
 
