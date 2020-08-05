@@ -11,6 +11,10 @@ To build Gnucap from source you need to install a number of buildtools:
 * auto tools
 * termcap library
 
+Optionally if you want to build Gnucap with CMake, you need:
+* CMake 3.12 (or later)
+* A build system generator such as Make or [Ninja](https://ninja-build.org/)
+
 ## Building Gnucap on Linux
 
 You can download the source of Gnucap from the [Gnu savannah repo](git://git.savannah.gnu.org/gnucap.git):
@@ -85,6 +89,8 @@ cd build
 cmake -G Ninja ..
 ninja all
 ```
+
+In this case, the [Ninja](https://ninja-build.org/) build tool is selected. You can also select Make if you prefer.
 
 One example configuration run is shown below
 
