@@ -1,6 +1,6 @@
 # Installing Gnucap
 
-There are multiple ways to get Gnucap running. To use the latest features, it is best to install Gnucap from source. Building Gnucap is best on a Linux operating system such as Debian or Ubuntu. To build Gnucap on other operating systems (for example MacOS or Windows) see the last section of this chapter.
+There are multiple ways to get Gnucap running. To use the latest features, it is best to install Gnucap from source. Building Gnucap has been written on a Linux operating system, and it should be easy to build Gnucap on system such as Debian or Ubuntu. To build Gnucap on other operating systems (for example MacOS or Windows) see the last section of this chapter.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ To build Gnucap from source you need to install a number of buildtools:
 * g++
 * the [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library or debian package `libreadline-dev`
 * auto tools
-* termcap library
+* termcap library to interact with rendering characters to a terminal
 
 Optionally if you want to build Gnucap with CMake, you need:
 * CMake 3.12 (or later)
