@@ -17,12 +17,16 @@ If you want to build Gnucap with CMake, you need:
 
 ## Building Gnucap on Linux
 
-First, you should install the dependencies.
-This means on OpenSuse:
+You can build Gnucap with help of autotools or CMake build tools.
+A short overview can be seen in the [Gnucap wiki](http://gnucap.org/dokuwiki/doku.php/gnucap:manual:autotools)
+
+If you are on a new system, you should install the dependencies first:
+
+An example on OpenSuse would like as:
 
 
 ```
-# zypper install cmake
+# zypper install readline-dev
 # zypper install termcap
 ```
 
