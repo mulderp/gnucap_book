@@ -120,7 +120,7 @@ For example, you can add all voltages in the circuits as follows:
 gnucap> print op v(nodes)
 ```
 
-If you now type again print without arguments you will see a first probe:
+If you now type again "print" without arguments you will see a first probe:
 
 ``` 
 gnucap> print
@@ -132,31 +132,41 @@ fourier
 gnucap>
 ```
 
-This means there will be one voltage probe added to the node 1. Similarly you can add probes for a current in the resistor component for example:
+This means there will be one voltage probe on node 1. Similarly you can add probes for a current in the resistor component for example:
 
 ```
-gnucap>print op i(rload)
-
+fourier
+gnucap> print op v(nodes) i(rload)
+gnucap> print
+tran   
+ac     
+dc     
+op      v(1) i(rload)
 ```
 
 ### Basic simulations
 
-Now you can run an analysis such as "op" or "dc" to run different simulations: 
+Now you can run an analysis such as "op" or "dc" to run different simulations. Operating points (or "op" simulations) are often helpful to get a first idea of where electrical charge moves inside a circuit.
+
+For the basic netlist so far the result is not very surprising:
+
 
 ```
 gnucap> op
-#           v(1)
- 0.         5.
- 1.         5.
+#           v(1)       i(rload)  
+ 27.        5.         0.005  
 ```
 
-To measure currents in a resistor with a DC sweep, you can follow the same procedure. First enter nodes for observation with:
+Gnucap took 27 iterations to solve the voltage and currents in the circuit.
+
+
+To see how charge moves with respect to changes in an electrical component (e.g. voltage of the voltage source), it is possible to do a DC sweep. First enter nodes for dc observation with:
 
  ```
 gnucap> print dc i(rload)
  ```
 
-And start the sweep with:
+Then start the sweep with:
 
  ```
 gnucap> dc vsrc 0 3 0.5
@@ -170,8 +180,6 @@ gnucap> dc vsrc 0 3 0.5
  3.         0.003
  ```
 
-Later we can look at "fourier" for getting frequency data.
-
 To capture outputs of an analysis you can use the ">" redirect:
 
 ```
@@ -180,7 +188,27 @@ gnucap> dc vsrc 0 3 0.5 > mydata.txt
 
 Now data that would otherwise be printed will end up in a file. The file is not CSV format, but in a format that gnuplot and gwave can read. 
 
-Now you can plot the data with gnuplot for example:
+## Plotting data
+
+There are a number of ways to plot data from an analysis.
+The fastes way to see a graphical result of a simulation is with the "plot" command.
+
+### Gnucap plot command
+
+```
+plot dc v(1)(0,1) v(2)(0,1)
+```
+(todo discuss terminal output formatting)
+
+However for higher resolution plots, it can help to install a waveform view or gnuplot. 
+
+### Gwave
+
+A free waveform viewer is [gwave](http://gwave.sourceforge.net/)
+
+### Gnuplot
+
+you can plot the data with gnuplot for example:
 
 ```
 $ gnuplot
