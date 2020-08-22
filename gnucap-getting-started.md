@@ -1,13 +1,15 @@
 
 # Simulator modes
 
-You can start Gnucap in interactive or batch mode. For small simulations and learning purposes the interactive mode can be helpful. It allows you to "build" a netlist manually with typine nodes and voltage/current sources.
-For larger circuits and simulations the batch mode can be interesting.
-An analysis is setup and controlled with commands. We first will look at the most important commands with the help of the interactive mode. This should give you a feeling on how to capture a netlist (a schemaitc), setup an analysis, run a simulation and capture its output.
+A Gnucap analysis is setup and controlled by commands. The commands can be entered either in interactive or batch simulation mode. Also, there exists Gnucap plugins that allow you run a Gnucap analysis from an external program such as Qucs or gEda.
 
+The interactive mode is good for small simulations and learning purposes the interactive mode can be helpful. It allows you to "build" a netlist manually by defining nodes and voltage/current sources line by line.
+
+For larger circuits and simulations, you can prepare your simulation in a ckt or spice file. And then call the batch mode. 
+
+In this chapter, we will look at the most important commands with the help of the interactive mode. This should give you a feeling on how to capture a netlist (a schemaitc), setup an analysis, run a simulation and capture its output.
 
 Besides different modes for simulations, Gnucap also support different formats for defining netlists. This will be discussed below in the Verilog part of the chapter.
-
 
 Let`s now look the interactive mode.
 
@@ -139,8 +141,28 @@ gnucap> dc vsrc 0 3 0.5 > mydata.txt
 
 Now data that would otherwise be printed will end up in a file. The file is not CSV format, but in a format that gnuplot and gwave can read. 
 
+Now you can plot the data with gnuplot for example:
 
-Or
+```
+$ gnuplot
+
+        G N U P L O T
+        Version 5.2 patchlevel 2    last modified 2017-11-15
+
+        Copyright (C) 1986-1993, 1998, 2004, 2007-2017
+        Thomas Williams, Colin Kelley and many others
+
+        gnuplot home:     http://www.gnuplot.info
+        faq, bugs, etc:   type "help FAQ"
+        immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type is now 'qt'
+gnuplot> plot "mydata.txt" using 1:2
+```
+
+Another plot program is gnuwave. Also Gnucap has an Ascii plot feature which can be interesting to discuss.
+
+
 
 
 Note: Gnucap has some plugins under development that can improve how you can capture data. You could use a small class as in [dataparse.py](https://codeberg.org/gnucap/gnucap-python/src/branch/develop/examples/dataparse.py) to read it from within Python.  
@@ -161,12 +183,7 @@ gnucap> hdfprobe tran v(nodes)
 gnucap> tran 1 2 3.
 ```
 
-
 a similar plugin could then implement CSV.
-```
-
-Now you can plot the data with gnuplot for example:
-
 
 
 ## Batch mode
