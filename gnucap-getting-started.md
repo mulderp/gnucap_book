@@ -230,33 +230,11 @@ Terminal type is now 'qt'
 gnuplot> plot "mydata.txt" using 1:2
 ```
 
-Another plot program is gnuwave. Also Gnucap has an Ascii plot feature which can be interesting to discuss.
+You now should see a simple resistor curve:
 
+![Basic resisotr](images/sim1.png =192x102)
 
-
-
-Note: Gnucap has some plugins under development that can improve how you can capture data. You could use a small class as in [dataparse.py](https://codeberg.org/gnucap/gnucap-python/src/branch/develop/examples/dataparse.py) to read it from within Python.  
-Y
-You could write a small program that converts to some other format, and
-run it as in
-
-```
-gnucap> transient 1 2 3 | anyprogram
-```
-
-Be warned this is a work in progress feature -- passing arguments or redirecting further seems not implemented, ...
-
-Some day, the output-pluggability will allow to do pretty much exactly what you are suggesting. there is a demo [hdf command](https://git.savannah.gnu.org/cgit/gnucap.git/log/?h=hdf-14) which shows the intended use. A demo command syntax is something like
-
-```
-gnucap> hdfprobe tran v(nodes)
-gnucap> tran 1 2 3.
-```
-
-a similar plugin could then implement CSV.
-
-
-## Batch mode
+## Batch Mode
 
 The same example can be run with batch mode. To start Gnucap in batch mode add a "-b" flag:
 
@@ -267,8 +245,6 @@ gnucap -b <mysim.ckt>
 There are different extensions such as .ckt or .gc for Gnucap simulations. Gnucap uses .gc for "gnucap" files, to distinguish which ones need -b. A number of examples can be found in the test folder of gnucap gnucap/tests/*.{gc,ckt}. -b switches on a "spice" mode, so in principle you could run the same .ckt files in ngspice and gnucap.
 
 Note that there are different syntax forms for netlist, e.g. Spice, Spectre, ... Also, Verilog simulations can be run with Gnucap.
-
-
 
 
 ## Verilog mode
@@ -305,5 +281,27 @@ somewhat independently, i have started the logic device rewrite with the aim to 
  gnucap-spice>.dc vsrc 0 1 .1 | ./postprocess.sh
 ```
 
+
+## Notes on storing data
+
+Gnucap has some plugins under development that can improve how you can capture data. You could use a small class as in [dataparse.py](https://codeberg.org/gnucap/gnucap-python/src/branch/develop/examples/dataparse.py) to read it from within Python.  
+Y
+You could write a small program that converts to some other format, and
+run it as in
+
+```
+gnucap> transient 1 2 3 | anyprogram
+```
+
+Be warned this is a work in progress feature -- passing arguments or redirecting further seems not implemented, ...
+
+Some day, the output-pluggability will allow to do pretty much exactly what you are suggesting. there is a demo [hdf command](https://git.savannah.gnu.org/cgit/gnucap.git/log/?h=hdf-14) which shows the intended use. A demo command syntax is something like
+
+```
+gnucap> hdfprobe tran v(nodes)
+gnucap> tran 1 2 3.
+```
+
+a similar plugin could then implement CSV.
 
 
