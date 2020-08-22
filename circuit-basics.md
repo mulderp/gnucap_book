@@ -1,6 +1,7 @@
 # Circuit basics
 
-Several tutorials to learn gnucap are available on the internet. A good overview is provided from the [gnucap-examples](http://gnucap.org/dokuwiki/doku.php/gnucap:manual:examples:hello_world) wiki page.
+Now that you have a feeling on how to interact with Gnucap, let's look at some examples for circuit analysis.
+
 
 
 ## A basic voltage divider
@@ -73,7 +74,13 @@ the content of the file would be:
 ```    
 Note that a there's a end command. It simple tells the program that it have done his job.
 
+## Simulate a diode
+
+to be discussed
+
 ## Simulate transistor
+
+work in progress
 
 ### Igs
 
@@ -92,3 +99,7 @@ M1 1 2 0 0 nmos_enhance L=10u W=400u
 ** analysis
 .DC Vds 0V 3V 100mV
 ``` 
+
+## References
+
+Several tutorials to learn gnucap are available on the internet. A good overview is provided from the [gnucap-examples](http://gnucap.org/dokuwiki/doku.php/gnucap:manual:examples:hello_world) wiki page.
