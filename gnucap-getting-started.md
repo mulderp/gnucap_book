@@ -3,13 +3,18 @@
 
 You can start Gnucap in interactive or batch mode. For small simulations and learning purposes the interactive mode can be helpful. It allows you to "build" a netlist manually with typine nodes and voltage/current sources.
 For larger circuits and simulations the batch mode can be interesting.
+An analysis is setup and controlled with commands. We first will look at the most important commands with the help of the interactive mode. This should give you a feeling on how to capture a netlist (a schemaitc), setup an analysis, run a simulation and capture its output.
+
+
 Besides different modes for simulations, Gnucap also support different formats for defining netlists. This will be discussed below in the Verilog part of the chapter.
 
 
-We first will look into the interactive mode.
+Let`s now look the interactive mode.
 
 
 ## Interactive mode
+
+The interactive mode will be started if you run Gnucap without arguments:
 
 ```
 ~$ gnucap
@@ -104,7 +109,65 @@ gnucap> op
  1.         5.
 ```
 
+ To run a dc sweep, you can follow the same procedure. First enter nodes for observation with:
+
+ ```
+gnucap> print dc i(rload)
+ ```
+
+And start the sweep with:
+
+ ```
+gnucap> dc vsrc 0 3 0.5
+#           i(Rload)
+ 0.         0.
+ 0.5        500.u
+ 1.         0.001
+ 1.5        0.0015
+ 2.         0.002
+ 2.5        0.0025
+ 3.         0.003
+ ```
+
 Later we can look at "fourier" for getting frequency data.
+
+To capture outputs of an analysis you can use the ">" redirect:
+
+```
+gnucap> dc vsrc 0 3 0.5 > mydata.txt
+```
+
+Now data that would otherwise be printed will end up in a file. The file is not CSV format, but in a format that gnuplot and gwave can read. 
+
+
+Or
+
+
+Note: Gnucap has some plugins under development that can improve how you can capture data. You could use a small class as in [dataparse.py](https://codeberg.org/gnucap/gnucap-python/src/branch/develop/examples/dataparse.py) to read it from within Python.  
+Y
+You could write a small program that converts to some other format, and
+run it as in
+
+```
+gnucap> transient 1 2 3 | anyprogram
+```
+
+Be warned this is a work in progress feature -- passing arguments or redirecting further seems not implemented, ... 
+
+Some day, the output-pluggability will allow to do pretty much exactly what you are suggesting. there is a demo [hdf command](https://git.savannah.gnu.org/cgit/gnucap.git/log/?h=hdf-14) which shows the intended use. A demo command syntax is something like
+
+```
+gnucap> hdfprobe tran v(nodes)
+gnucap> tran 1 2 3.
+```
+
+
+a similar plugin could then implement CSV.
+```
+
+Now you can plot the data with gnuplot for example:
+
+
 
 ## Batch mode
 
@@ -140,4 +203,17 @@ m #(.w(w)) m1(0, 1);
 vin  1  0  dc 3
 
 .dc vin 0 5 0.2
+```
+
+Notes from Felix in mailing list:
+the "set lang verilog" command hands over the input parsing to the verilog language plugin. as you might have found, the shipped version of this plugin essentially implements netlisting (some paramset and device instanciation), and running commands (not part of standard verilog). the wire, and register commands as well as the events in verilog are used in, or to describe, component models.
+
+generating component models is more involved. a possible approach is to turn a model description into a plugin written in a programming language. another approach is to interpret the model or use some intermediate bytecode whatosoever. there is a tradeoff between speed and other things such as (maybe) flexibility.
+
+we have a model compiler "modelgen" that reads models, in a language that predates verilog. it writes plugins written in C++ and it is limited to analog component models.  E.g. the built-in semiconductor models are partly implemented in modelgen langage. The intent and plan is to also support a sensible subset of verilog-a in a modelgen style compiler. and then possibly include the digital/mixed modelling features you mention. it is not there yet [1].
+
+somewhat independently, i have started the logic device rewrite with the aim to support verilog-ams "connectmodule" semantics. this will provide custom mixed signal behavioural models -- limited to C++ (probably also Python) implementations at the moment ([2], there is something on the mailing list about it). it's all plugins. perhaps they should be standalone and/or part of gnucap-python...
+
+```
+ gnucap-spice>.dc vsrc 0 1 .1 | ./postprocess.sh
 ```
