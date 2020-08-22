@@ -2,7 +2,7 @@
 
 * [Gnucap overview](README.md)
 * [Installing Gnucap](installing-gnucap.md)
-* [Getting Started](gnucap-getting-started.md)
-* [Circuit Basics](circuit-basics.md)
+* [Analysis of a Basic Netlist](gnucap-getting-started.md)
+* [Analysis of Diodes and Transistors](circuit-basics.md)
 * [Simulations with Python](interactions-with-python.md)
 
