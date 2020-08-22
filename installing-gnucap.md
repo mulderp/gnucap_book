@@ -1,29 +1,38 @@
 # Installing Gnucap
 
-There are multiple ways to get Gnucap running. To use the latest features, it is best to install Gnucap from source. Building Gnucap has been written on a Linux operating system, and it should be easy to build Gnucap on system such as Debian or Ubuntu. To build Gnucap on other operating systems (for example MacOS or Windows) see the last section of this chapter.
+There are pre-built binaries of Gnucap availabe if you search for them. However, to use the latest features, it is best to install Gnucap from source. Many EDA software tools have been written on a Linux operating system. So is Gnucap. It is easy to build Gnucap on system such as Debian or Ubuntu. To build Gnucap on other operating systems (for example MacOS or Windows) see the last section of this chapter.
 
 ## Prerequisites
 
-To build Gnucap from source you need to install a number of buildtools: 
+To build Gnucap from source you need to install a number of buildtools and libraries: 
 
-* g++
-* the [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library or debian package `libreadline-dev`
-* auto tools
+* A modern g++ compiler
+* Auto tools or CMake build tools
+* The [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library or debian package `libreadline-dev`
 * termcap library to interact with rendering characters to a terminal
 
-Optionally if you want to build Gnucap with CMake, you need:
+If you want to build Gnucap with CMake, you need:
 * CMake 3.12 (or later)
 * A build system generator such as Make or [Ninja](https://ninja-build.org/)
 
 ## Building Gnucap on Linux
 
-You can download the source of Gnucap from the [Gnu savannah repo](git://git.savannah.gnu.org/gnucap.git):
+First, you should install the dependencies.
+This means on OpenSuse:
+
+
+```
+# zypper install cmake
+# zypper install termcap
+```
+
+Then for Gnucap, you can download its source from the [Gnu savannah repo](git://git.savannah.gnu.org/gnucap.git):
 
 ```text
 git clone git://git.savannah.gnu.org/gnucap.git
 ```
 
-or
+or from the URL with https if your network does support that better:
 
 
 ```text
@@ -42,7 +51,7 @@ This will give you the basic Gnucap directory structure:
 ```
 
 As you will learn later, the architecture of Gnucap is based heavily on plugins. The apps and libs folder include a set of plugins. 
-The main user interface is in the main folder. Modelgen is a utility to translate electrical components into models for simulation with Gnucap.
+Gnucap consists of a set of models for simulations, simulation algorithms and a user interface. The main user interface is in the main folder. Modelgen is a utility to translate electrical components into models for simulation with Gnucap.
 
 To build Gnucap, you should move to a recent tag or branch of the project. You can do this with:
 
@@ -65,13 +74,25 @@ To build of these, you can run the default build commands:
 ```text
 ./configure
 ./make
+./make install
+
+For a CMake based build look below.
 ```
 
-It might be necessary to reload the shared libraries with:
+Before you can start Gnucap, it might be necessary to reload the shared libraries with:
 
 ```text
  ldconfig
  ./configure
+```
+
+And set the Gnucap plugin path to your path that has gnucap-default-plugins.so 
+
+For example:
+
+```
+export GNUCAP_PLUGPATH=/usr/local/lib64/gnucap/
+
 ```
 
 
