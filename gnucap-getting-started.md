@@ -3,7 +3,7 @@
 
 To run a Gnucap analysis of an electrical circuit, you require a netlist. A netlist is a representation of a circuit and its different components such as voltage sources, resistors or transistors.
 
-To enter a netlist in Gnucap and run a simulation. you first need a basic understanding of commands in Gnucap. Commands can be entered either in interactive or batch simulation mode. Also, there exist Gnucap plugins that allow you to run a Gnucap analysis from an external program such as [Qucs]{http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
+To enter a netlist in Gnucap and run a simulation. you first need a basic understanding of commands in Gnucap. Commands can be entered either in interactive or batch simulation mode. Also, there exist Gnucap plugins that allow you to run a Gnucap analysis from an external program such as [Qucs](http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
 
 In this chapter, we will look at the most important Gnucap commands with the help of the interactive mode. This should give you a feeling on how to write a netlist (a schematic), add probes for an analysis, then run a simulation and capture its output.
 
@@ -232,7 +232,7 @@ gnuplot> plot "mydata.txt" using 1:2
 
 You now should see a simple resistor curve:
 
-![Basic resisotr](images/sim1.png =192x102)
+![Basic plot of a DC sweep](images/sim1.png =192x102)
 
 ## Batch Mode
 
