@@ -1,20 +1,27 @@
 
-# Simulator modes
+# Getting Started with Gnucap
 
-A Gnucap analysis is setup and controlled by commands. The commands can be entered either in interactive or batch simulation mode. Also, there exists Gnucap plugins that allow you run a Gnucap analysis from an external program such as Qucs or gEda.
+To run a Gnucap analysis of an electrical circuit, you require a netlst. A netlist is a represenation of a circuits and its different components such as voltage sources, resistors or transistors. 
 
-The interactive mode is good for small simulations and learning purposes the interactive mode can be helpful. It allows you to "build" a netlist manually by defining nodes and voltage/current sources line by line.
+To enter a netlist in Gnucap and run a sumulation. you first need a basic understanding of commands in Gnucap. Commands can be entered either in interactive or batch simulation mode. Also, there exist Gnucap plugins that allow you to run a Gnucap analysis from an external program such as [Qucs]{http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
 
-For larger circuits and simulations, you can prepare your simulation in a ckt or spice file. And then call the batch mode. 
+In this chapter, we will look at the most important Gnucap commands with the help of the interactive mode. This should give you a feeling on how to setup a netlist (a schemaitc), add probes for an analysis, then run a simulation and capture its output.
 
-In this chapter, we will look at the most important commands with the help of the interactive mode. This should give you a feeling on how to capture a netlist (a schemaitc), setup an analysis, run a simulation and capture its output.
+Once you are able to load a netlist and start a simulation, the data from a simulation can be plotted with help of the plotting function or a plotting program.
+
+
+## Overview on Simulator Modes
+
+The interactive mode is helpful for doing small simulations and learning purposes. The interactive mode allows you to "build" a netlist manually by defining nodes and voltage/current sources line by line.
+
+For larger circuits and simulations, you can prepare your simulation in a ckt or spice file. In batch mode, you can load the netlist and run the simulation without manual interventions.
 
 Besides different modes for simulations, Gnucap also support different formats for defining netlists. This will be discussed below in the Verilog part of the chapter.
 
-Let`s now look the interactive mode.
+Let`s first look at the basics of the interactive mode.
 
 
-## Interactive mode
+## Interactive Mode
 
 The interactive mode will be started if you run Gnucap without arguments:
 
@@ -66,9 +73,11 @@ gnucap> build
 Vsrc 1 0 5
 Rload 1 0 1k
 <empty line>
+
+Note the empty line to end "building" the netlist. You can later add new components with the "modify" command.
 ```
 
-Now you can check the netlist was defined with "list":
+Once you haft entered the netlist, you can inspect the netlist with "list":
 
 ```
 gnucap> list
@@ -77,9 +86,15 @@ Rload ( 1 0 )  1.K
 gnucap>
 ```
 
-Next you need to think what to measure and how to measure voltages or currents in your circuit. For this, you need to take a look at the "print" command. The print command help is: "The ‘print’ command selects where to look at the circuit, or where to hook the voltmeter (ammeter, wattmeter, ohm meter, etc.) probe."
+This is a very simple netlist with only 2 components. Let"s see how it can be analyzed.
 
-If you play with it in the Gnucap console you will see: 
+
+### Adding probes
+
+To do an analysis, you first need to think what to measure and how. In Gnucap, you need to take a look at the "print" command. In the documentation you will see: "The ‘print’ command selects where to look at the circuit, or where to hook the voltmeter (ammeter, wattmeter, ohm meter, etc.) probe."
+
+If you play with "print" in the Gnucap console you will see: 
+
 ```
 gnucap> print
 tran
@@ -88,8 +103,26 @@ dc
 op
 fourier
 gnucap> print op
+```
 
+The modes for analysis are: 
+
+* op: The "op" mode provides a way to get the operation points, or basic voltages and currents in a circuit. 
+* dc: A DC analysis is made to sweep the voltage or current (or some other parameter) in a circuit. It is basically a loop on "op" ananalysis
+* ac:  With an AC analysis you can do simulations in the frequency domain, e.g. for looking at filters.
+* tran: This modes is for transient simulations. Transient simulations are made to study dynamic behavior of a circuit.
+* fourier: TODO
+
+Besides the operation mode, you need to add voltages and currents that you want to observe.
+For example, you can add all voltages in the circuits as follows:
+
+``` 
 gnucap> print op v(nodes)
+```
+
+If you now type again print without arguments you will see a first probe:
+
+``` 
 gnucap> print
 tran
 ac
@@ -99,10 +132,16 @@ fourier
 gnucap>
 ```
 
-This means there will be one probe added to the node 1.
+This means there will be one voltage probe added to the node 1. Similarly you can add probes for a current in the resistor component for example:
 
+```
+gnucap>print op i(rload)
 
-Now you can run an analysis such as "op" or "dc" to run different sweeps. 
+```
+
+### Basic simulations
+
+Now you can run an analysis such as "op" or "dc" to run different simulations: 
 
 ```
 gnucap> op
@@ -111,7 +150,7 @@ gnucap> op
  1.         5.
 ```
 
- To run a dc sweep, you can follow the same procedure. First enter nodes for observation with:
+To measure currents in a resistor with a DC sweep, you can follow the same procedure. First enter nodes for observation with:
 
  ```
 gnucap> print dc i(rload)
