@@ -3,11 +3,11 @@
 
 To run a Gnucap analysis of an electrical circuit, you require a netlist. A netlist is a representation of a circuit and its different components such as voltage sources, resistors or transistors.
 
-Entering a simple netlist and running an analysis is a good start to learn some basic Gnucap commands. Commands can be entered either in interactive or batch simulation mode. If you prefer a GUI to work with a netlist, there exist Gnucap plugins that allow you to capture a netlist and run an analysis from with help of external programs such as [Qucs](http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
+Entering a simple netlist and running an analysis is a good start to learn some basic Gnucap commands. Commands can be entered either in interactive or batch simulation mode. If you prefer a GUI to work with a netlist, there exist Gnucap plugins that allow you to capture a netlist and run an analysis with help of external programs such as [Qucs](http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
 
-The purpose of this chapter however is to look at the most important commands for electrical simulations with the help of the interactive mode. This should give you a feeling on how to write a netlist (a schematic), add probes for an analysis, then run a simulation and capture its output.
+The purpose of this chapter however is to look at the most important commands for electrical simulations. After having read this chapter, you should have a feeling on how to write a netlist (a schematic), add probes for an analysis, then run a simulation and capture its output.
 
-Once you are able to load a netlist and start a simulation, the data from a simulation can be plotted with help of the plotting function or a plotting program.
+Once you are able to load a netlist and start a simulation, the data from a simulation can be plotted with help of the plotting function or a plotting program. This will be discussed at the end of this chapter.
 
 
 ## Overview on Simulator Modes
