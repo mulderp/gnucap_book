@@ -1,11 +1,11 @@
 
-# Getting Started with Gnucap
+# Getting Started
 
-To run a Gnucap analysis of an electrical circuit, you require a netlst. A netlist is a represenation of a circuits and its different components such as voltage sources, resistors or transistors. 
+To run a Gnucap analysis of an electrical circuit, you require a netlist. A netlist is a representation of a circuit and its different components such as voltage sources, resistors or transistors.
 
-To enter a netlist in Gnucap and run a sumulation. you first need a basic understanding of commands in Gnucap. Commands can be entered either in interactive or batch simulation mode. Also, there exist Gnucap plugins that allow you to run a Gnucap analysis from an external program such as [Qucs]{http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
+To enter a netlist in Gnucap and run a simulation. you first need a basic understanding of commands in Gnucap. Commands can be entered either in interactive or batch simulation mode. Also, there exist Gnucap plugins that allow you to run a Gnucap analysis from an external program such as [Qucs]{http://qucs.sourceforge.net/) or [gEda](http://www.geda-project.org/).
 
-In this chapter, we will look at the most important Gnucap commands with the help of the interactive mode. This should give you a feeling on how to setup a netlist (a schemaitc), add probes for an analysis, then run a simulation and capture its output.
+In this chapter, we will look at the most important Gnucap commands with the help of the interactive mode. This should give you a feeling on how to write a netlist (a schematic), add probes for an analysis, then run a simulation and capture its output.
 
 Once you are able to load a netlist and start a simulation, the data from a simulation can be plotted with help of the plotting function or a plotting program.
 
@@ -16,7 +16,7 @@ The interactive mode is helpful for doing small simulations and learning purpose
 
 For larger circuits and simulations, you can prepare your simulation in a ckt or spice file. In batch mode, you can load the netlist and run the simulation without manual interventions.
 
-Besides different modes for simulations, Gnucap also support different formats for defining netlists. This will be discussed below in the Verilog part of the chapter.
+Besides different modes for simulations, Gnucap also supports different formats for defining netlists. This will be discussed below in the Verilog part of the chapter.
 
 Let`s first look at the basics of the interactive mode.
 
@@ -32,7 +32,7 @@ Never trust any version less than 1.0
 Copyright 1982-2013, Albert Davis
 Gnucap comes with ABSOLUTELY NO WARRANTY
 This is free software, and you are welcome
-to redistribute it under the terms of 
+to redistribute it under the terms of
 the GNU General Public License, version 3 or later.
 See the file "COPYING" for details.
 main version: master 2017.10.03
@@ -66,18 +66,19 @@ Also, a number of Gnucap commands can be seen in the source file "c__cmd.cc" :
 Commands can be abbreviated with their first letter, e.g. "b" for build.
 
 The first command you want to learn are "build" and "list" to capture a netlist or the nodes of an electrical circuit.
-See below a very basic example:
+
+Take a look below for a very basic build example:
 
 ```
 gnucap> build
 Vsrc 1 0 5
 Rload 1 0 1k
 <empty line>
-
-Note the empty line to end "building" the netlist. You can later add new components with the "modify" command.
 ```
 
-Once you haft entered the netlist, you can inspect the netlist with "list":
+Note the empty line to end "building" the netlist. You can later add new components with the "modify" command.
+
+Once you have entered the netlist, you can inspect the netlist with "list":
 
 ```
 gnucap> list
@@ -93,7 +94,7 @@ This is a very simple netlist with only 2 components. Let"s see how it can be an
 
 To do an analysis, you first need to think what to measure and how. In Gnucap, you need to take a look at the "print" command. In the documentation you will see: "The ‘print’ command selects where to look at the circuit, or where to hook the voltmeter (ammeter, wattmeter, ohm meter, etc.) probe."
 
-If you play with "print" in the Gnucap console you will see: 
+If you play with "print" in the Gnucap console you will see:
 
 ```
 gnucap> print
@@ -105,24 +106,24 @@ fourier
 gnucap> print op
 ```
 
-The modes for analysis are: 
+The modes for analysis are:
 
-* op: The "op" mode provides a way to get the operation points, or basic voltages and currents in a circuit. 
-* dc: A DC analysis is made to sweep the voltage or current (or some other parameter) in a circuit. It is basically a loop on "op" ananalysis
+* op: The "op" mode provides a way to get the operation points, or basic voltages and currents in a circuit.
+* dc: A DC analysis is made to sweep the voltage or current (or some other parameter) in a circuit. It is basically a loop on "op" an analysis
 * ac:  With an AC analysis you can do simulations in the frequency domain, e.g. for looking at filters.
-* tran: This modes is for transient simulations. Transient simulations are made to study dynamic behavior of a circuit.
+* tran: This mode is for transient simulations. Transient simulations are made to study dynamic behavior of a circuit.
 * fourier: TODO
 
 Besides the operation mode, you need to add voltages and currents that you want to observe.
 For example, you can add all voltages in the circuits as follows:
 
-``` 
+```
 gnucap> print op v(nodes)
 ```
 
 If you now type again "print" without arguments you will see a first probe:
 
-``` 
+```
 gnucap> print
 tran
 ac
@@ -186,7 +187,7 @@ To capture outputs of an analysis you can use the ">" redirect:
 gnucap> dc vsrc 0 3 0.5 > mydata.txt
 ```
 
-Now data that would otherwise be printed will end up in a file. The file is not CSV format, but in a format that gnuplot and gwave can read. 
+Now data that would otherwise be printed will end up in a file. The file is not CSV format, but in a format that gnuplot and gwave can read.
 
 ## Plotting data
 
@@ -200,11 +201,13 @@ plot dc v(1)(0,1) v(2)(0,1)
 ```
 (todo discuss terminal output formatting)
 
-However for higher resolution plots, it can help to install a waveform view or gnuplot. 
+However for higher resolution plots, it can help to install a waveform view or gnuplot.
 
 ### Gwave
 
 A free waveform viewer is [gwave](http://gwave.sourceforge.net/)
+(todo discuss installation of gwave)
+
 
 ### Gnuplot
 
@@ -241,7 +244,7 @@ run it as in
 gnucap> transient 1 2 3 | anyprogram
 ```
 
-Be warned this is a work in progress feature -- passing arguments or redirecting further seems not implemented, ... 
+Be warned this is a work in progress feature -- passing arguments or redirecting further seems not implemented, ...
 
 Some day, the output-pluggability will allow to do pretty much exactly what you are suggesting. there is a demo [hdf command](https://git.savannah.gnu.org/cgit/gnucap.git/log/?h=hdf-14) which shows the intended use. A demo command syntax is something like
 
@@ -301,3 +304,6 @@ somewhat independently, i have started the logic device rewrite with the aim to 
 ```
  gnucap-spice>.dc vsrc 0 1 .1 | ./postprocess.sh
 ```
+
+
+
