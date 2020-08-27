@@ -136,7 +136,6 @@ gnucap>
 This means there will be one voltage probe on node 1. Similarly you can add probes for a current in the resistor component for example:
 
 ```
-fourier
 gnucap> print op v(nodes) i(rload)
 gnucap> print
 tran   
@@ -145,7 +144,9 @@ dc
 op      v(1) i(rload)
 ```
 
-### Basic simulations
+It is also possible to abbreviate "print" with pr. Also, there is an alias probe for print.
+
+### OP and DC simulations
 
 Now you can run an analysis such as "op" or "dc" to run different simulations. Operating points (or "op" simulations) are often helpful to get a first idea of where electrical charge moves inside a circuit.
 
@@ -188,6 +189,51 @@ gnucap> dc vsrc 0 3 0.5 > mydata.txt
 ```
 
 Now data that would otherwise be printed will end up in a file. The file is not CSV format, but in a format that gnuplot and gwave can read.
+
+### Transient simulations
+
+After operation points and DC sweeps a widely needed analysis function are transient simulations. In transient simulations, a simulation loop is run where time is swept. This is needed to study the dynamic behavior of a circuit. See the example below for the transient mode:
+
+```
+gnucap> build
+V1       1  0   pwl (0 0, 1m 50V)
+C1       2  0   10uF
+R1       1  2   100kOhm
+* empty line
+
+gnucap> print tran V(2)
+gnucap> tran .5 10 > charger.txt
+```
+
+### Parameters
+
+It is possible to assign parameter values to a component and a circuit and search for a specific effect.
+
+```
+gnucap> b
+>v1 1 0 pwl(0 0, 1m 1)
+>c1 2 0 100pF
+>r1 1 2 rparam
+>
+gnucap> pr op v(2)
+gnucap> op
+```
+
+
+## Batch Mode
+
+The same example can be run with batch mode. To start Gnucap in batch mode add a "-b" flag:
+
+```
+gnucap -b <mysim.ckt>
+```
+
+There are different extensions such as .ckt or .gc for Gnucap simulations. Gnucap uses .gc for "gnucap" files, to distinguish which ones need -b. A number of examples can be found in the test folder of gnucap gnucap/tests/*.(gc,ckt). -b switches on a "spice" mode, so in principle you could run the same .ckt files in ngspice and gnucap.
+
+Note that there are different syntax forms for netlist, e.g. Spice, Spectre, ... Also, Verilog simulations can be run with Gnucap.
+
+
+
 
 ## Plotting data
 
@@ -234,17 +280,6 @@ You now should see a simple resistor curve:
 
 ![Basic plot of a DC sweep](images/sim1.png =192x102)
 
-## Batch Mode
-
-The same example can be run with batch mode. To start Gnucap in batch mode add a "-b" flag:
-
-```
-gnucap -b <mysim.ckt>
-```
-
-There are different extensions such as .ckt or .gc for Gnucap simulations. Gnucap uses .gc for "gnucap" files, to distinguish which ones need -b. A number of examples can be found in the test folder of gnucap gnucap/tests/*.{gc,ckt}. -b switches on a "spice" mode, so in principle you could run the same .ckt files in ngspice and gnucap.
-
-Note that there are different syntax forms for netlist, e.g. Spice, Spectre, ... Also, Verilog simulations can be run with Gnucap.
 
 
 ## Verilog mode
@@ -303,5 +338,25 @@ gnucap> tran 1 2 3.
 ```
 
 a similar plugin could then implement CSV.
+
+## Note on automation
+
+Often you want to add build support to run simulations automatically. One way to do this is with CMake as the following example shows:
+
+```
+cmake_minimum_required(VERSION 3.15)
+
+project(flow LANGUAGES )
+
+set(CIRCUIT "src.ckt" CACHE STRING "Circuit")
+set(PLOTSCRIPT "plot_tr.p" CACHE STRING "Plot script")
+
+# https://cliutils.gitlab.io/modern-cmake/chapters/basics/variables.html
+message(STATUS "Circuit: ${CIRCUIT}")
+
+add_custom_target(sim COMMAND gnucap -b ${CIRCUIT})
+
+add_custom_Target(plot COMMAND gnuplot ${PLOTSCRIPT})
+```
 
 
