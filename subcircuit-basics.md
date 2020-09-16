@@ -11,12 +11,14 @@ To understand the syntax for a subcircuit take a look at voltage divider.
 
 Enter the following lines in a file vdiv.ckt:
 
-    * voltage divider
-    subckt vdiv in out
-    vi in 0 1.0
-    r1 1 out 10K
-    r2 out 0 10K
-    ends vdiv
+```
+* voltage divider
+subckt vdiv in out
+vi in 0 1.0
+r1 1 out 10K
+r2 out 0 10K
+ends vdiv
+```
  
 In Gnucap this subcircuit can be loaded with:
 
@@ -80,32 +82,3 @@ the content of the file would be:
 ```    
 Note that a there's a end command. It simple tells the program that it have done his job.
 
-## Simulate a diode
-
-to be discussed
-
-## Simulate transistor
-
-work in progress
-
-### Igs
-
-```
-** simulation of pn junction
-Vds 1 0 DC +10V
-Vgs 2 0 DC +3V
-M1 1 2 0 0 nmos_enhance L=10u W=400u
-
-* model statement (Level 1 by default)
-.MODEL nmos_enhance nmos (kp=20u Vto=+2 lambda=0)
-
-** output
-.print DC V(1) I(Vds)
-
-** analysis
-.DC Vds 0V 3V 100mV
-``` 
-
-## References
-
-Several tutorials to learn gnucap are available on the internet. A good overview is provided from the [gnucap-examples](http://gnucap.org/dokuwiki/doku.php/gnucap:manual:examples:hello_world) wiki page.
