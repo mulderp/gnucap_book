@@ -46,28 +46,32 @@ The gnucap prompt allows you to enter different commands. Unfortunately, there i
 Also, a number of Gnucap commands can be seen in the source file "c__cmd.cc" :
 
      build
-     delete
-     fourier
-     generator
-     include
-     list
      modify
+     delete
+     list
+     include
+     generator
+     transient
+     fourier
      options
      param
      print
-     quit
      status
      temperature
-     transient
      system
+     quit
      <
      >
 
 Commands can be abbreviated with their first letter, e.g. "b" for build.
 
-The first command you want to learn are "build" and "list" to capture a netlist or the nodes of an electrical circuit.
+The first command you want to learn are the commands to enter a netlist. These commands are:
+* "build": This command will bring up a small line editor to enter a netlist
+* "list": The command will show the netlist that is currently loaded.
+* "modify": This command allows you to modify a component in a netlist
+* "delete": This command deletes an item in the netlist
 
-Take a look below for a very basic build example:
+First, take a look below for a very basic build example:
 
 ```
 gnucap> build
@@ -87,7 +91,32 @@ Rload ( 1 0 )  1.K
 gnucap>
 ```
 
-This is a very simple netlist with only 2 components. Let"s see how it can be analyzed.
+This is a very simple netlist with only 2 components. 
+
+### Loading circuits with get
+
+One more strategy can be helpful to load a netlist. Instead of using "build" to enter all nodes, you can use "get" to load a prepared netlist.
+
+So you can enter a netlist with a text editor in a file myckt.ckt:
+
+```
+-- An example
+Vsrc 1 0 5
+Rload 1 0 1k
+```
+
+Note the first line should include a comment of the circuit. This is a convention from Spice syntax. And Spice syntax is very widely used.
+
+Now in Gnucap you can just enter:
+
+```
+gnucap> get myckt.ckt
+```
+If you run "list" now, you will see the same netlist as was entered with build.
+
+Besides "get" there is also the "include" command. The include command executes the commands which are defined in the ckt file. This can be useful to setup parameters and options which will be discussed later.
+
+Let's continue how circuits can be analyzed.
 
 
 ### Adding probes
@@ -212,7 +241,7 @@ It is possible to assign parameter values to a component and a circuit and searc
 ```
 gnucap> b
 >v1 1 0 pwl(0 0, 1m 1)
->c1 2 0 100pF
+>c1 2 0 100fF
 >r1 1 2 rparam
 >
 gnucap> pr op v(2)
