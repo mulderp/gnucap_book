@@ -63,7 +63,9 @@ Also, a number of Gnucap commands can be seen in the source file "c__cmd.cc" :
      <
      >
 
-Commands can be abbreviated with their first letter, e.g. "b" for build.
+Commands can be abbreviated with their first letter, e.g. "b" for build. As this command is important let's see how it works.
+
+### Building a netlist
 
 The first command you want to learn are the commands to enter a netlist. These commands are:
 * "build": This command will bring up a small line editor to enter a netlist
@@ -241,17 +243,51 @@ It is possible to assign parameter values to a component and a circuit and searc
 ```
 gnucap> b
 >v1 1 0 pwl(0 0, 1m 1)
->c1 2 0 100fF
->r1 1 2 rparam
+>c1 2 0 100uF
+>r1 1 2 rdelay
 >
-gnucap> pr op v(2)
-gnucap> op
+```
+
+In this example, you can see how long it takes to load a capacitor. You can see the influence of the resistor as follows:
+
+```
+gnucap> pr op v(2) v(1)
+gnucap> param rdelay 100
+gnucap> tr 0 1 0.2
+```
+
+This will show you:
+
+```
+gnucap> param rdelay 1000
+gnucap> tr 0 1 0.2
+#Time       v(2)       v(1)
+ 0.         0.         0.
+ 0.2        0.86007    1.
+ 0.4        0.98265    1.
+ 0.6        0.99785    1.
+ 0.8        0.99973    1.
+ 1.         0.99997    1.
+```
+
+Now you can run the same simulation with another resistor and see the delay time increase:
+
+```
+gnucap> param rdelay 10k
+gnucap> tr 0 1 0.2
+#Time       v(2)       v(1)
+ 0.         0.         0.
+ 0.2        0.17725    1.
+ 0.4        0.32684    1.
+ 0.6        0.44923    1.
+ 0.8        0.54937    1.
+ 1.         0.6313     1.
 ```
 
 
 ## Batch Mode
 
-The same example can be run with batch mode. To start Gnucap in batch mode add a "-b" flag:
+The same examples from the interactive mode can be run with batch mode with help of a simulation batch file. To start Gnucap in batch mode add a "-b" flag:
 
 ```
 gnucap -b <mysim.ckt>
