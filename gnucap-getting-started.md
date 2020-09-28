@@ -343,7 +343,7 @@ gnuplot> plot "mydata.txt" using 1:2
 
 You now should see a simple resistor curve:
 
-![Basic plot of a DC sweep](images/sim1.png =192x102)
+![Basic plot of a DC sweep](images/sim1.png)
 
 
 
